@@ -65,7 +65,7 @@ export class SceneManager {
         this.renderer.render(this.scene, this.camera);
     }
 
- //   add(object) {
- //       this.scene.add(object);
- //   }
+    add(object) {
+        this.scene.add(object);
+    }
 }
