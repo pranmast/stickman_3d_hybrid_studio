@@ -3,15 +3,17 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.m
 
 export class SceneManager {
 
-    constructor(THREE, animator) { 
+    constructor(THREE) {
         this.scene = null;
         this.camera = null;
         this.renderer = null;
         this.clock = null;
         this.THREE = THREE;
-       this.animator = null; // <-- Store the animator reference
+        this.animator = null; // 🌟 NEW: Property to hold the animator
     }
-registerAnimator(animator) {
+
+    // 🌟 NEW METHOD: Called from main.js (Step 4)
+    registerAnimator(animator) {
         this.animator = animator;
     }
     async init() {
@@ -50,10 +52,10 @@ registerAnimator(animator) {
         this.animate();
     }
 
-    animate() {
+   animate() {
         requestAnimationFrame(() => this.animate());
         
-        const delta = this.clock.getDelta(); // Gets the time elapsed since last frame
+        const delta = this.clock.getDelta();
 
         // 🌟 FIX: Run the animator's update logic every frame
         if (this.animator) {
@@ -63,7 +65,7 @@ registerAnimator(animator) {
         this.renderer.render(this.scene, this.camera);
     }
 
-    add(object) {
-        this.scene.add(object);
-    }
+ //   add(object) {
+ //       this.scene.add(object);
+ //   }
 }
