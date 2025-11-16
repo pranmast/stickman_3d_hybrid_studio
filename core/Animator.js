@@ -1,6 +1,6 @@
 // core/Animator.js
 // Simple timeline player and pose interpolator for the Stickman
-import * as THREE from "../libs/three.module.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 
 export class Animator {
   constructor(stickman) {
