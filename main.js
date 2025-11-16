@@ -9,7 +9,7 @@ import RecordingSystem from "./core/Recording.js";
 import UI from "./core/UI.js";
 import CameraSystem from "./core/CameraSystem.js";
 
-let sceneMgr, stickman, animator, promptEngine, recorder, ui, cameraSystem;
+let sceneMgr, stickman, animator, promptEngine, recorder, ui, cameraSystem,character ;
 
 async function start() {
   // Scene + renderer
@@ -19,6 +19,7 @@ async function start() {
   // Rig / Actor
   stickman = new Stickman(sceneMgr.scene);
   stickman.group.position.set(0, 0, 0);
+  character = new Stickman(sceneManager.scene, { color: 0xffffff });
 
   // Animator
   animator = new Animator(stickman);
