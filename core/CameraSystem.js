@@ -1,7 +1,7 @@
 // core/CameraSystem.js
 // Cinematic motion paths for camera (orbit, follow, drift, static, zoom)
 
-import * as THREE from "../libs/three.module.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 
 export default class CameraSystem {
     constructor(camera, target) {
