@@ -1,5 +1,6 @@
 // core/Stickman.js
 // Simple hybrid stickman: 2D canvas drawn on a THREE plane (billboard) + basic 3D joint markers
+import * as THREE from "../libs/three.module.js";
 
 export class Stickman {
   constructor(scene, options = {}) {
