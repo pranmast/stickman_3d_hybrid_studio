@@ -8,7 +8,6 @@ export class Stickman {
         this.color = options.color || 0xffffff;
         this.size = options.size || 1;
         this.gender = options.gender || "neutral";
-
         this.group = new THREE.Group();
         this.scene.add(this.group);
 
