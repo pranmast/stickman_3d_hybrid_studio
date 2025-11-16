@@ -9,9 +9,11 @@ export class SceneManager {
         this.renderer = null;
         this.clock = null;
         this.THREE = THREE;
-        this.animator = animator; // <-- Store the animator reference
+       this.animator = null; // <-- Store the animator reference
     }
-
+registerAnimator(animator) {
+        this.animator = animator;
+    }
     async init() {
 
         console.log("Initializing SceneManager...");
@@ -51,9 +53,9 @@ export class SceneManager {
     animate() {
         requestAnimationFrame(() => this.animate());
         
-        const delta = this.clock.getDelta();
+        const delta = this.clock.getDelta(); // Gets the time elapsed since last frame
 
-        // 🌟 CHANGE 2: Call the animator's update method every frame!
+        // 🌟 FIX: Run the animator's update logic every frame
         if (this.animator) {
             this.animator.update(delta);
         }
