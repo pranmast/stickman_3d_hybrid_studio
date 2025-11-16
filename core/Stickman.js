@@ -57,14 +57,41 @@ export class Stickman {
         this.group.add(this.rightLeg);
     }
 
-    setPose(pose) {
-        if (!pose) return;
+   // Stickman.js (FIXED CODE)
 
-        if (pose.leftArm) this.leftArm.rotation.x = pose.leftArm;
-        if (pose.rightArm) this.rightArm.rotation.x = pose.rightArm;
-        if (pose.leftLeg) this.leftLeg.rotation.x = pose.leftLeg;
-        if (pose.rightLeg) this.rightLeg.rotation.x = pose.rightLeg;
+setPose(pose) {
+    if (!pose) return;
+
+    // Apply rotation for each limb component (x, y, z)
+    
+    // Left Arm
+    if (pose.leftArm) {
+        this.leftArm.rotation.x = pose.leftArm.x || 0;
+        this.leftArm.rotation.y = pose.leftArm.y || 0;
+        this.leftArm.rotation.z = (pose.leftArm.z || 0) + (Math.PI / 2); // See note below
     }
+
+    // Right Arm
+    if (pose.rightArm) {
+        this.rightArm.rotation.x = pose.rightArm.x || 0;
+        this.rightArm.rotation.y = pose.rightArm.y || 0;
+        this.rightArm.rotation.z = (pose.rightArm.z || 0) + (Math.PI / 2); // See note below
+    }
+
+    // Left Leg
+    if (pose.leftLeg) {
+        this.leftLeg.rotation.x = pose.leftLeg.x || 0;
+        this.leftLeg.rotation.y = pose.leftLeg.y || 0;
+        this.leftLeg.rotation.z = pose.leftLeg.z || 0;
+    }
+
+    // Right Leg
+    if (pose.rightLeg) {
+        this.rightLeg.rotation.x = pose.rightLeg.x || 0;
+        this.rightLeg.rotation.y = pose.rightLeg.y || 0;
+        this.rightLeg.rotation.z = pose.rightLeg.z || 0;
+    }
+}
 
     setPosition(x, y, z = 0) {
         this.group.position.set(x, y, z);
