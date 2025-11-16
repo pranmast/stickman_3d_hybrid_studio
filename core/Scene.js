@@ -3,12 +3,13 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.m
 
 export class SceneManager {
 
-    constructor() {
+    constructor(THREE, animator) { 
         this.scene = null;
         this.camera = null;
         this.renderer = null;
         this.clock = null;
         this.THREE = THREE;
+        this.animator = animator; // <-- Store the animator reference
     }
 
     async init() {
@@ -49,6 +50,14 @@ export class SceneManager {
 
     animate() {
         requestAnimationFrame(() => this.animate());
+        
+        const delta = this.clock.getDelta();
+
+        // 🌟 CHANGE 2: Call the animator's update method every frame!
+        if (this.animator) {
+            this.animator.update(delta);
+        }
+
         this.renderer.render(this.scene, this.camera);
     }
 
