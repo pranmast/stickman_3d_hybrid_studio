@@ -1,5 +1,5 @@
 // core/Scene.js
-
+import * as THREE from "../libs/three.module.js";
 export class SceneManager {
 
     constructor() {
