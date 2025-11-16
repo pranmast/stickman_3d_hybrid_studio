@@ -37,6 +37,7 @@ function setupUI() {
         // 🌟 FIX 1: Must load the timeline first, then start playing.
         animator.loadTimeline(actions); 
         animator.play();
+        console.log("animator.play() clicked");
     };
 }
 
