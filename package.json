@@ -1,0 +1,11 @@
+{
+  "name": "stickman-animation-studio",
+  "version": "1.0.0",
+  "description": "Web-based 2D/3D stickman animation studio with MP4 export and AI prompt engine.",
+  "scripts": {
+    "start": "npx http-server .",
+    "build": "echo 'Static build — upload to GitHub Pages'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

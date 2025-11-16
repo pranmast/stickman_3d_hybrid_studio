@@ -1,0 +1,84 @@
+body { 
+    margin: 0;
+    background: #111;
+    color: #fff;
+    font-family: Arial;
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT PANEL FIX — Prevent shrinking */
+#leftMenu {
+    width: 320px;
+    flex-shrink: 0;       /* IMPORTANT FIX */
+    background: #222;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    background: #333;
+    color: white;
+    padding: 8px;
+    border: none;
+    resize: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: none;
+    background: #555;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #777;
+}
+
+#posePanel {
+    background: #333;
+    padding: 10px;
+}
+
+.pose-control {
+    margin-bottom: 8px;
+}
+
+#timeline {
+    height: 200px;
+    background: #333;
+    overflow-y: auto;
+}
+
+.timeline-frame {
+    padding: 5px;
+    border-bottom: 1px solid #444;
+    cursor: pointer;
+}
+
+.timeline-frame:hover {
+    background: #555;
+}
+
+/* SCENE / CANVAS AREA */
+#scene {
+    flex: 1;
+    background: #000;
+    position: relative;
+}
+
+/* Fix canvas overflow issue */
+#scene canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
