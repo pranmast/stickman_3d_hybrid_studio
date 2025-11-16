@@ -13,6 +13,7 @@ export class Animator {
     this.keyframes = kfs.slice().sort((a, b) => a.time - b.time);
     this.duration = this.keyframes.length ? this.keyframes[this.keyframes.length - 1].time : 0;
     this.time = 0;
+    console.log(" loadTimeline ");
   }
 
   play() { this.playing = true; }
