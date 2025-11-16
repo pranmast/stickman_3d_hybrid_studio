@@ -8,7 +8,7 @@ export class PromptEngine {
     this.motionLib = new MotionLibrary();
   }
 
-  generateTimeline(prompt) {
+  parse(prompt) {
     const parts = prompt.split(/,|then|and then|;/i).map(s => s.trim()).filter(Boolean);
     let timeline = [];
     let timeCursor = 0;
