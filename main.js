@@ -35,15 +35,15 @@ function setupUI() {
     const runBtn = document.getElementById("runPrompt");
 
     runBtn.onclick = async () => {
-        const text = promptBox.value.trim();
-        if (!text) return;
+    const text = promptBox.value.trim();
+    if (!text) return;
 
-        const actions = await promptEngine.parse(text);
-        
-        // 🌟 FIX 3: Must load the timeline, then start playing.
-        animator.loadTimeline(actions); 
-        animator.play();              
-    };
+    const actions = await promptEngine.parse(text);
+    
+    // 🌟 FIX: Load the keyframes, then start playing.
+    animator.loadTimeline(actions); 
+    animator.play();              
+};
 }
 
 // 🔥 FIX: Wait for HTML to load
