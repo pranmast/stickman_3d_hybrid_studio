@@ -7,8 +7,6 @@ export class SceneManager {
         this.camera = null;
         this.renderer = null;
         this.clock = null;
-    }
-     constructor(THREE) {
         this.THREE = THREE;
     }
 
