@@ -1,42 +1,28 @@
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 import { SceneManager } from "./core/Scene.js";
 import { Stickman } from "./core/Stickman.js";
 import { PromptEngine } from "./core/PromptEngine.js";
 import { Animator } from "./core/Animator.js";
 
-let sceneManager;
-let stickman;
-let animator;
-let promptEngine;
+let sceneManager, character, animator, promptEngine;
+
+console.log("Starting Stickman Studio...");
 
 async function start() {
+    console.log("DOM Loaded, starting engine…");
 
-    console.log("Starting Stickman Studio...");
+    sceneManager = new SceneManager(THREE);
+    await sceneManager.init();
 
-    // 1️⃣ Create the 3D scene environment
-    sceneManager = new SceneManager();
-    await sceneManager.init();   // ensures THREE is loaded + scene, camera, lights, renderer
+    character = new Stickman(sceneManager.scene, THREE);
 
-    // 2️⃣ Create the stickman (MUST pass 'scene', not 'sceneManager.scene')
-    stickman = new Stickman({
-        scene: sceneManager.scene,   // correct constructor shape
-        color: 0xffffff,
-        size: 1,
-        gender: "neutral"
-    });
+    animator = new Animator(character, THREE);
 
-    // Add stickman to the 3D scene
-    sceneManager.add(stickman.group);  // stickman.group MUST exist
-
-    // 3️⃣ Animation system
-    animator = new Animator(stickman);
-
-    // 4️⃣ Prompt engine
     promptEngine = new PromptEngine(animator);
 
-    // 5️⃣ Hook UI buttons / prompt input
     setupUI();
 
-    console.log("Stickman Studio Loaded ✔");
+    console.log("Stickman Studio Loaded.");
 }
 
 function setupUI() {
@@ -52,5 +38,5 @@ function setupUI() {
     };
 }
 
-// Start application
-start();
+// 🔥 FIX: Wait for HTML to load
+window.addEventListener("DOMContentLoaded", start);
