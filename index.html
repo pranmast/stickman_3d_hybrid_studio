@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <title>Stickman Animation Studio</title>
 
-  <!-- Ensure relative URLs resolve correctly for project pages -->
+  <!-- Ensure relative URLs resolve under the repo path on GitHub Pages -->
   <base href="./">
 
-  <!-- Map bare specifiers to CDN builds so browser can resolve `import 'three'` from your core modules -->
+  <!-- Map 'three' to the CDN so browser can resolve bare imports from your core modules -->
   <script type="importmap">
   {
     "imports": {
@@ -18,35 +18,8 @@
 
   <link rel="stylesheet" href="./style.css" />
 </head>
-
 <body>
-  <div id="app">
-    <div id="leftMenu">
-      <textarea id="promptInput" placeholder="Describe the scene..."></textarea>
-      <button id="generateBtn">Generate Animation</button>
-      <button id="playBtn">▶ Play</button>
-      <button id="recordBtn">● Record</button>
-      <button id="exportBtn">⬇ Export</button>
-
-      <h3>Camera Mode</h3>
-      <select id="cameraPathSelect">
-        <option value="orbit">Orbit</option>
-        <option value="follow">Follow</option>
-        <option value="drift">Drift</option>
-        <option value="static">Static</option>
-        <option value="zoom">Zoom</option>
-      </select>
-
-      <h3>Pose Editor</h3>
-      <div id="posePanel"></div>
-
-      <h3>Timeline</h3>
-      <div id="timeline"></div>
-    </div>
-
-    <canvas id="scene"></canvas>
-  </div>
-
+  ... your body unchanged ...
   <script type="module" src="./main.js"></script>
 </body>
 </html>
