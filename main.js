@@ -34,7 +34,9 @@ function setupUI() {
         if (!text) return;
 
         const actions = await promptEngine.parse(text);
-        animator.play(actions);
+        // 🌟 FIX 1: Must load the timeline first, then start playing.
+        animator.loadTimeline(actions); 
+        animator.play();
     };
 }
 
