@@ -1,4 +1,3 @@
-import * as THREE from "../libs/three.module.js";
 
 export class Stickman {
 
