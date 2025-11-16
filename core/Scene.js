@@ -1,6 +1,8 @@
 // core/Scene.js
 // Scene manager that sets up THREE renderer, camera, and simple ground
 
+import * as THREE from "../libs/three.module.js";
+
 export class SceneManager {
   constructor(canvasOrElement) {
     // If given canvas element id 'scene' (as in /index.html), use it
