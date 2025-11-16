@@ -8,6 +8,9 @@ export class SceneManager {
         this.renderer = null;
         this.clock = null;
     }
+     constructor(THREE) {
+        this.THREE = THREE;
+    }
 
     async init() {
 
@@ -15,7 +18,7 @@ export class SceneManager {
 
         this.clock = new THREE.Clock();
 
-        this.scene = new THREE.Scene();
+        this.scene = new this.THREE.Scene();
         this.scene.background = new THREE.Color(0x000000);
 
         this.camera = new THREE.PerspectiveCamera(
