@@ -11,17 +11,19 @@ console.log("Starting Stickman Studio...");
 async function start() {
     console.log("DOM Loaded, starting engine…");
 
-    sceneManager = new SceneManager(THREE);
-    await sceneManager.init();
-
-    character = new Stickman(sceneManager.scene, THREE);
-
+    // 1. Initialize Stickman, Animator, and PromptEngine first
+    character = new Stickman(null, THREE);
     animator = new Animator(character, THREE);
-
     promptEngine = new PromptEngine(animator);
 
-    setupUI();
+    // 🌟 FIX: Initialize SceneManager and pass the animator
+    sceneManager = new SceneManager(THREE, animator); // <-- PASS ANIMATOR HERE
+    await sceneManager.init();
 
+    // Re-assign character scene reference now that SceneManager is initialized
+    character.scene = sceneManager.scene; // Ensure character is in the scene
+
+    setupUI();
     console.log("Stickman Studio Loaded.");
 }
 
@@ -34,10 +36,10 @@ function setupUI() {
         if (!text) return;
 
         const actions = await promptEngine.parse(text);
-        // 🌟 FIX 1: Must load the timeline first, then start playing.
+        
+        // 🌟 FIX 3: Must load the timeline, then start playing.
         animator.loadTimeline(actions); 
-        animator.play();
-        console.log("animator.play() clicked");
+        animator.play();              
     };
 }
 
