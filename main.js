@@ -1,6 +1,6 @@
 // main.js
 // Entry point: wires scene, rig, animator, prompt engine and UI together.
-
+import * as THREE from "./libs/three.module.js";
 import { SceneManager } from "./core/Scene.js";
 import { Stickman } from "./core/Stickman.js";
 import { Animator } from "./core/Animator.js";
