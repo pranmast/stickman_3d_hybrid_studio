@@ -11,17 +11,20 @@ console.log("Starting Stickman Studio...");
 async function start() {
     console.log("DOM Loaded, starting engine…");
 
-    // 1. Initialize Stickman, Animator, and PromptEngine first
-    character = new Stickman(null, THREE);
+    // 1. Initialize SceneManager first and wait for it to create scene/renderer
+    sceneManager = new SceneManager(THREE);
+    await sceneManager.init(); 
+
+    // 2. Initialize Stickman, passing the now-available scene object
+    character = new Stickman(sceneManager.scene, THREE);
+
+    // 3. Initialize Animator and PromptEngine
     animator = new Animator(character, THREE);
     promptEngine = new PromptEngine(animator);
 
-    // 🌟 FIX: Initialize SceneManager and pass the animator
-    sceneManager = new SceneManager(THREE, animator); // <-- PASS ANIMATOR HERE
-    await sceneManager.init();
-
-    // Re-assign character scene reference now that SceneManager is initialized
-    character.scene = sceneManager.scene; // Ensure character is in the scene
+    // 🌟 NEW FIX: Register the animator instance with the SceneManager
+    //    (Requires a small change in Scene.js, see Step 2)
+    sceneManager.registerAnimator(animator); 
 
     setupUI();
     console.log("Stickman Studio Loaded.");
