@@ -3,7 +3,7 @@ export class Stickman {
 
     constructor(scene, options = {}) {
         this.scene = scene;
-
+        this.THREE = THREE;
         this.color = options.color || 0xffffff;
         this.size = options.size || 1;
         this.gender = options.gender || "neutral";
