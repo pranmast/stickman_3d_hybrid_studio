@@ -4,33 +4,39 @@ import { PromptEngine } from "./core/PromptEngine.js";
 import { Animator } from "./core/Animator.js";
 
 let sceneManager;
-let character;
+let stickman;
 let animator;
 let promptEngine;
 
 async function start() {
 
-    // 1️⃣ Create the scene manager FIRST
-    sceneManager = new SceneManager();
-    await sceneManager.init();  // sets up Three.js, camera, lights, renderer
+    console.log("Starting Stickman Studio...");
 
-    // 2️⃣ Create the stickman AFTER the scene exists
-    character = new Stickman(sceneManager.scene, {
+    // 1️⃣ Create the 3D scene environment
+    sceneManager = new SceneManager();
+    await sceneManager.init();   // ensures THREE is loaded + scene, camera, lights, renderer
+
+    // 2️⃣ Create the stickman (MUST pass 'scene', not 'sceneManager.scene')
+    stickman = new Stickman({
+        scene: sceneManager.scene,   // correct constructor shape
         color: 0xffffff,
         size: 1,
         gender: "neutral"
     });
 
-    // 3️⃣ Animation engine
-    animator = new Animator(character);
+    // Add stickman to the 3D scene
+    sceneManager.add(stickman.group);  // stickman.group MUST exist
 
-    // 4️⃣ Prompt → animation engine
+    // 3️⃣ Animation system
+    animator = new Animator(stickman);
+
+    // 4️⃣ Prompt engine
     promptEngine = new PromptEngine(animator);
 
-    // 5️⃣ Attach UI events
+    // 5️⃣ Hook UI buttons / prompt input
     setupUI();
 
-    console.log("Stickman Studio Loaded.");
+    console.log("Stickman Studio Loaded ✔");
 }
 
 function setupUI() {
@@ -39,12 +45,12 @@ function setupUI() {
 
     runBtn.onclick = async () => {
         const text = promptBox.value.trim();
-        if (text.length === 0) return;
+        if (!text) return;
 
         const actions = await promptEngine.parse(text);
         animator.play(actions);
     };
 }
 
-// Start app on load
+// Start application
 start();
